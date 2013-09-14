@@ -124,7 +124,7 @@
 {    
     NSString *displayString = [[[_calculatorModel inputArray] valueForKey:@"description"] componentsJoinedByString:@""];
 //    [NSString stringWithFormat:@"%d", [_calculatorModel.something integerValue]];
-    outputDisplay.text = displayString;
+    outputDisplay.text = displayString; 
 }
 
 
