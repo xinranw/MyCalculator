@@ -19,6 +19,9 @@
 		CE373F0417E4D0270020DF5E /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CE373EEC17E4D0270020DF5E /* UIKit.framework */; };
 		CE373F0C17E4D0270020DF5E /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = CE373F0A17E4D0270020DF5E /* InfoPlist.strings */; };
 		CE373F0E17E4D0270020DF5E /* MyCalculatorTests.m in Sources */ = {isa = PBXBuildFile; fileRef = CE373F0D17E4D0270020DF5E /* MyCalculatorTests.m */; };
+		CE373F1817E4D0CF0020DF5E /* MainStoryboard.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = CE373F1717E4D0CF0020DF5E /* MainStoryboard.storyboard */; };
+		CE373F1E17E4D16D0020DF5E /* XIWCalculatorModel.m in Sources */ = {isa = PBXBuildFile; fileRef = CE373F1D17E4D16D0020DF5E /* XIWCalculatorModel.m */; };
+		CE373F2117E4D1A10020DF5E /* XIWMainViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = CE373F2017E4D1A10020DF5E /* XIWMainViewController.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -48,6 +51,11 @@
 		CE373F0917E4D0270020DF5E /* MyCalculatorTests-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "MyCalculatorTests-Info.plist"; sourceTree = "<group>"; };
 		CE373F0B17E4D0270020DF5E /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
 		CE373F0D17E4D0270020DF5E /* MyCalculatorTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = MyCalculatorTests.m; sourceTree = "<group>"; };
+		CE373F1717E4D0CF0020DF5E /* MainStoryboard.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = MainStoryboard.storyboard; sourceTree = "<group>"; };
+		CE373F1C17E4D16D0020DF5E /* XIWCalculatorModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = XIWCalculatorModel.h; sourceTree = "<group>"; };
+		CE373F1D17E4D16D0020DF5E /* XIWCalculatorModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = XIWCalculatorModel.m; sourceTree = "<group>"; };
+		CE373F1F17E4D1A10020DF5E /* XIWMainViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = XIWMainViewController.h; path = ../XIWMainViewController.h; sourceTree = "<group>"; };
+		CE373F2017E4D1A10020DF5E /* XIWMainViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = XIWMainViewController.m; path = ../XIWMainViewController.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -109,6 +117,11 @@
 			children = (
 				CE373EF717E4D0270020DF5E /* XIWAppDelegate.h */,
 				CE373EF817E4D0270020DF5E /* XIWAppDelegate.m */,
+				CE373F1717E4D0CF0020DF5E /* MainStoryboard.storyboard */,
+				CE373F1F17E4D1A10020DF5E /* XIWMainViewController.h */,
+				CE373F2017E4D1A10020DF5E /* XIWMainViewController.m */,
+				CE373F1C17E4D16D0020DF5E /* XIWCalculatorModel.h */,
+				CE373F1D17E4D16D0020DF5E /* XIWCalculatorModel.m */,
 				CE373EFA17E4D0270020DF5E /* Images.xcassets */,
 				CE373EEF17E4D0270020DF5E /* Supporting Files */,
 			);
@@ -220,6 +233,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				CE373F1817E4D0CF0020DF5E /* MainStoryboard.storyboard in Resources */,
 				CE373EF317E4D0270020DF5E /* InfoPlist.strings in Resources */,
 				CE373EFB17E4D0270020DF5E /* Images.xcassets in Resources */,
 			);
@@ -241,6 +255,8 @@
 			buildActionMask = 2147483647;
 			files = (
 				CE373EF517E4D0270020DF5E /* main.m in Sources */,
+				CE373F1E17E4D16D0020DF5E /* XIWCalculatorModel.m in Sources */,
+				CE373F2117E4D1A10020DF5E /* XIWMainViewController.m in Sources */,
 				CE373EF917E4D0270020DF5E /* XIWAppDelegate.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -436,6 +452,7 @@
 				CE373F1317E4D0270020DF5E /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		CE373F1417E4D0270020DF5E /* Build configuration list for PBXNativeTarget "MyCalculatorTests" */ = {
 			isa = XCConfigurationList;
@@ -444,6 +461,7 @@
 				CE373F1617E4D0270020DF5E /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};
