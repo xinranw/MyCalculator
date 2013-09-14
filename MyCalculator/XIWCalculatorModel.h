@@ -2,7 +2,7 @@
 //  XIWCalculatorModel.h
 //  MyCalculator
 //
-//  Created by User on 9/14/13.
+//  Created by Xinran Wang on 9/14/13.
 //  Copyright (c) 2013 Xinran Wang. All rights reserved.
 //
 
@@ -14,8 +14,12 @@
 }
 
 //add any properties you need
-
+@property (nonatomic, strong) NSMutableArray *inputArray;
 
 //add any methods you need
-
+-(void)insertIntoArray:(NSString *)input atIndex:(NSInteger)index;
+-(void)appendIntoArray:(NSString *)input atIndex:(NSInteger)index;
+-(void)setLastButtonPress:(NSString *)button;
+-(NSString *)getLastButtonPress;
+-(int)getIndex;
 @end

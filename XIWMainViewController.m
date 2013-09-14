@@ -2,23 +2,39 @@
 //  XIWMainViewController.m
 //  CalculatorDemo
 //
-//  Created by Tanvir Ahmed on 9/4/13.
-//  Copyright (c) 2013 Tanvir Ahmed. All rights reserved.
+//  Created by Xinran Wang on 9/14/13.
+//  Copyright (c) 2013 Xinran Wang. All rights reserved.
 //
 
 #import "XIWMainViewController.h"
+#import "XIWCalculatorModel.h"
 
 @interface XIWMainViewController ()
+//private properties and methods
+@property (nonatomic, strong) XIWCalculatorModel *calculatorModel;
+@property (nonatomic, strong) NSSet *numbers;
+@property (nonatomic, strong) NSSet *operators;
+@property (nonatomic, strong) NSSet *others;
+
+//- (void)updateOutputDisplay;
 - (void)setButtonBorders;
+
+
 @end
 
 @implementation XIWMainViewController
+// Initialization
+//XIWCalculatorModel *calculatorModel;
+
 
 - (void)viewDidLoad
 {
     [super viewDidLoad];
 	// Do any additional setup after loading the view.
-    
+    _calculatorModel = [[XIWCalculatorModel alloc] init];
+    _numbers = [NSSet setWithArray:[NSArray arrayWithObjects:@"0", @"1", @"2", @"3", @"4", @"5", @"6", @"7", @"8", @"9", @"."]];
+    _operators = [NSSet setWithArray:[NSArray arrayWithObjects:@"=", @"-", @"+", @"X", @"/"]];
+    _others = [NSSet setWithArray:[NSArray arrayWithObjects:@"C", @"+/-", @"%", @"3", @"4", @"5", @"6", @"7", @"8", @"9"]];
     //set up the button borders
     [self setButtonBorders];
 }
@@ -60,22 +76,59 @@
     }
 }
 
+
+//    NSNumberFormatter *f = [[NSNumberFormatter alloc] init];
+//    NSNumber *myNumber = [f numberFromString:[[sender titleLabel] text]];
+
+
+//NSString *string = @"hello bla bla";
+//if ([string rangeOfString:@"bla"].location == NSNotFound) {
+//    NSLog(@"string does not contain bla");
+//} else {
+//    NSLog(@"string contains bla!");
+//}
+
+// Handle the case when a number or a decimal is pressed
 - (IBAction)numberPressed:(id)sender
 {
-    //handle the case when a number or a decimal is pressed
-    NSLog(@"%@ pressed.", [[sender titleLabel] text]);
+    NSString *buttonPressed = [[sender titleLabel] text];   // Store current button press
+    NSInteger currIndex = [_calculatorModel getIndex];
+    
+    if ([_numbers containsObject:[_calculatorModel getLastButtonPress]] && ![buttonPressed isEqual:@"."]){
+        [_calculatorModel appendIntoArray:buttonPressed atIndex:currIndex];
+    } else if ([buttonPressed isEqual:@"."] && ([[[_calculatorModel inputArray] objectAtIndex:currIndex] rangeOfString:buttonPressed].location == NSNotFound)) {
+        // if decimal has not been pressed yet
+        [_calculatorModel appendIntoArray:buttonPressed atIndex:currIndex];
+    } else {
+        [_calculatorModel insertIntoArray:buttonPressed atIndex:([_calculatorModel getIndex]+1)];
+    }
+    [_calculatorModel setLastButtonPress:buttonPressed];
+    [self updateOutputDisplay];
 }
 
 - (IBAction)operationPressed:(id)sender
 {
     //handle the case when /, X, -, +, = is pressed
     NSLog(@"%@ pressed.", [[sender titleLabel] text]);
+    [self updateOutputDisplay];
 }
 
 - (IBAction)otherPressed:(id)sender
 {
     //handle the case when C, +/-, % is pressed
     NSLog(@"%@ pressed.", [[sender titleLabel] text]);
+    [self updateOutputDisplay];
 }
+
+- (void)updateOutputDisplay
+{    
+    NSString *displayString = [[[_calculatorModel inputArray] valueForKey:@"description"] componentsJoinedByString:@""];
+//    [NSString stringWithFormat:@"%d", [_calculatorModel.something integerValue]];
+    outputDisplay.text = displayString;
+}
+
+
+
+
 
 @end

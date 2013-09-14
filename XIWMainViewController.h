@@ -2,12 +2,13 @@
 //  XIWMainViewController.m
 //  CalculatorDemo
 //
-//  Created by Tanvir Ahmed on 9/4/13.
-//  Copyright (c) 2013 Tanvir Ahmed. All rights reserved.
+//  Created by Xinran Wang on 9/14/13.
+//  Copyright (c) 2013 Xinran Wang. All rights reserved.
 //
 
 #import <UIKit/UIKit.h>
 #import <QuartzCore/QuartzCore.h>
+#import "XIWCalculatorModel.h"
 
 @interface XIWMainViewController : UIViewController
 {
@@ -42,6 +43,7 @@
     IBOutlet UIButton *zeroButton;
 }
 
+//button handlers
 - (IBAction)numberPressed:(id)sender;
 - (IBAction)operationPressed:(id)sender;
 - (IBAction)otherPressed:(id)sender;

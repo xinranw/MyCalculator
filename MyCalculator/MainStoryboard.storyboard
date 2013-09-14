@@ -286,23 +286,7 @@
     </scenes>
     <resources>
         <image name="NumberImage" width="70" height="70"/>
-        <image name="NumberImage" width="70" height="70"/>
-        <image name="NumberImage" width="70" height="70"/>
-        <image name="NumberImage" width="70" height="70"/>
-        <image name="NumberImage" width="70" height="70"/>
-        <image name="NumberImage" width="70" height="70"/>
-        <image name="NumberImage" width="70" height="70"/>
-        <image name="NumberImage" width="70" height="70"/>
-        <image name="NumberImage" width="70" height="70"/>
-        <image name="NumberImage" width="70" height="70"/>
-        <image name="NumberImage" width="70" height="70"/>
         <image name="OperationImage" width="70" height="70"/>
-        <image name="OperationImage" width="70" height="70"/>
-        <image name="OperationImage" width="70" height="70"/>
-        <image name="OperationImage" width="70" height="70"/>
-        <image name="OperationImage" width="70" height="70"/>
-        <image name="TopRowImage" width="70" height="70"/>
-        <image name="TopRowImage" width="70" height="70"/>
         <image name="TopRowImage" width="70" height="70"/>
     </resources>
     <simulatedMetricsContainer key="defaultSimulatedMetrics">

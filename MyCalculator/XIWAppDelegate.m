@@ -2,7 +2,7 @@
 //  XIWAppDelegate.m
 //  MyCalculator
 //
-//  Created by User on 9/14/13.
+//  Created by Xinran Wang on 9/14/13.
 //  Copyright (c) 2013 Xinran Wang. All rights reserved.
 //
 
