@@ -19,8 +19,9 @@
 //add any methods you need
 -(void)insertIntoArray:(NSString *)input atIndex:(NSInteger)index;
 -(void)appendIntoArray:(NSString *)input atIndex:(NSInteger)index;
+-(void)replaceIntoArray:(NSString *)input atIndex:(NSInteger)index;
 -(void)setLastButtonPress:(NSString *)button;
 -(NSString *)getLastButtonPress;
 -(int)getIndex;
-//-(void)evaluate:(NSString *)calcOperator;
+-(void)evaluate:(NSString *)calcOperator;
 @end

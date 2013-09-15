@@ -21,11 +21,7 @@
 //implement any methods you declared
 -(id)init
 {
-    _inputArray= [[NSMutableArray alloc] init];
-    for (NSInteger i = 0; i < 3; i++)
-    {
-        [_inputArray addObject:@""];
-    }
+    _inputArray = [[NSMutableArray alloc] initWithObjects:@"0", @"", @"", nil];
     
     _currIndex = [NSNumber numberWithInt:(-1)];
     
@@ -44,6 +40,11 @@
     [_inputArray replaceObjectAtIndex: index withObject: temp];
 }
 
+-(void)replaceIntoArray:(NSString *)input atIndex:(NSInteger)index
+{
+    [_inputArray replaceObjectAtIndex: index withObject: input];
+}
+
 - (void)setLastButtonPress:(NSString *)button
 {
     _lastButtonPress = button;
@@ -60,10 +61,10 @@
 }
 
 
-//-(void)evaluate:(NSString *)calcOperator
-//{
-//    
-//}
+-(void)evaluate:(NSString *)calcOperator
+{
+    
+}
 
 
 
