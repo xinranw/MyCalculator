@@ -124,6 +124,8 @@
     }
     [_calculatorModel setLastButtonPress:buttonPressed];
     [self updateOutputDisplay];
+    
+    //TODO : Code evaluation logic
 }
 
 - (IBAction)otherPressed:(id)sender
