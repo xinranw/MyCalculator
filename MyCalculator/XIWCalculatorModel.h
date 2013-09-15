@@ -22,4 +22,5 @@
 -(void)setLastButtonPress:(NSString *)button;
 -(NSString *)getLastButtonPress;
 -(int)getIndex;
+//-(void)evaluate:(NSString *)calcOperator;
 @end

@@ -11,7 +11,7 @@
 @interface XIWCalculatorModel()
 //declare any private properties
 @property (nonatomic, strong) NSString *lastButtonPress;
-@property (nonatomic, assign) int *currIndex;
+@property (nonatomic, assign) NSNumber *currIndex;
 
 //declare any private methods
 
@@ -27,7 +27,7 @@
         [_inputArray addObject:@""];
     }
     
-    _currIndex = 0;
+    _currIndex = [NSNumber numberWithInt:(-1)];
     
     return self;
 }
@@ -35,13 +35,12 @@
 - (void)insertIntoArray:(NSString *)input atIndex:(NSInteger)index
 {
     [_inputArray replaceObjectAtIndex: index withObject: input];
+    _currIndex = [NSNumber numberWithInt: index];
 }
 
 - (void)appendIntoArray:(NSString *)input atIndex:(NSInteger)index
 {
     NSString *temp = [[_inputArray objectAtIndex:index] stringByAppendingString:input];
-    NSLog(@"%@", [_inputArray objectAtIndex:index]);
-    NSLog(@"%@", temp);
     [_inputArray replaceObjectAtIndex: index withObject: temp];
 }
 
@@ -57,12 +56,14 @@
 
 - (int)getIndex
 {
-    return _currIndex;
+    return [_currIndex integerValue];
 }
 
 
-
-
+//-(void)evaluate:(NSString *)calcOperator
+//{
+//    
+//}
 
 
 

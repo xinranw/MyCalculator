@@ -92,15 +92,21 @@
 - (IBAction)numberPressed:(id)sender
 {
     NSString *buttonPressed = [[sender titleLabel] text];   // Store current button press
-    NSInteger currIndex = [_calculatorModel getIndex];
+    NSInteger currIndex = [_calculatorModel getIndex];      // Store current inputArray index
+    if ([buttonPressed isEqual:@"."]){
+        NSLog(@"%d", [[[_calculatorModel inputArray] objectAtIndex:0] rangeOfString:buttonPressed].location == NSNotFound);
+    }
     
     if ([_numbers containsObject:[_calculatorModel getLastButtonPress]] && ![buttonPressed isEqual:@"."]){
+        // If last button press was a number and current button press isn't a decimal
         [_calculatorModel appendIntoArray:buttonPressed atIndex:currIndex];
     } else if ([buttonPressed isEqual:@"."] && ([[[_calculatorModel inputArray] objectAtIndex:currIndex] rangeOfString:buttonPressed].location == NSNotFound)) {
-        // if decimal has not been pressed yet
+        // If decimal has not been pressed yet
         [_calculatorModel appendIntoArray:buttonPressed atIndex:currIndex];
+    } else if ([buttonPressed isEqual:@"."]){
     } else {
-        [_calculatorModel insertIntoArray:buttonPressed atIndex:([_calculatorModel getIndex]+1)];
+        // If last button press was not a number
+        [_calculatorModel insertIntoArray:buttonPressed atIndex:([_calculatorModel getIndex] + 1)];
     }
     [_calculatorModel setLastButtonPress:buttonPressed];
     [self updateOutputDisplay];
@@ -110,6 +116,13 @@
 {
     //handle the case when /, X, -, +, = is pressed
     NSLog(@"%@ pressed.", [[sender titleLabel] text]);
+    
+//    NSString *buttonPressed = [[sender titleLabel] text];   // Store current button press
+//    NSInteger currIndex = [_calculatorModel getIndex];      // Store current inputArray index
+    
+    
+    
+    
     [self updateOutputDisplay];
 }
 
