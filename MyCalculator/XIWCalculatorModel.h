@@ -20,8 +20,11 @@
 -(void)insertIntoArray:(NSString *)input atIndex:(NSInteger)index;
 -(void)appendIntoArray:(NSString *)input atIndex:(NSInteger)index;
 -(void)replaceIntoArray:(NSString *)input atIndex:(NSInteger)index;
+-(void)setCurrIndex:(int)index;
 -(void)setLastButtonPress:(NSString *)button;
 -(NSString *)getLastButtonPress;
 -(int)getIndex;
--(void)evaluate:(NSString *)calcOperator;
+-(void)evaluate;
+-(void)reset;
+-(void)reverseSignAtIndex:(NSInteger) index;
 @end

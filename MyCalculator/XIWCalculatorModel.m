@@ -31,7 +31,6 @@
 - (void)insertIntoArray:(NSString *)input atIndex:(NSInteger)index
 {
     [_inputArray replaceObjectAtIndex: index withObject: input];
-    _currIndex = [NSNumber numberWithInt: index];
 }
 
 - (void)appendIntoArray:(NSString *)input atIndex:(NSInteger)index
@@ -45,7 +44,12 @@
     [_inputArray replaceObjectAtIndex: index withObject: input];
 }
 
-- (void)setLastButtonPress:(NSString *)button
+-(void)setCurrIndex:(int)index
+{
+    _currIndex = [NSNumber numberWithInt: index];
+}
+
+-(void)setLastButtonPress:(NSString *)button
 {
     _lastButtonPress = button;
 }
@@ -61,12 +65,42 @@
 }
 
 
--(void)evaluate:(NSString *)calcOperator
+-(void)evaluate
+{
+    NSNumberFormatter *doubleFormatter = [[NSNumberFormatter alloc] init];
+    [doubleFormatter setUsesSignificantDigits:TRUE];
+    
+    NSString *calcOperator = [_inputArray objectAtIndex:1];
+    double result = 0.0;
+
+    if ([calcOperator isEqualToString:@"+"])
+        result = [[_inputArray objectAtIndex:0] doubleValue] + [[_inputArray objectAtIndex:2] doubleValue];
+    else if ([calcOperator isEqualToString:@"-"])
+        result = [[_inputArray objectAtIndex:0] doubleValue] - [[_inputArray objectAtIndex:2] doubleValue];
+    else if ([calcOperator isEqualToString:@"X"])
+        result = [[_inputArray objectAtIndex:0] doubleValue] * [[_inputArray objectAtIndex:2] doubleValue];
+    else if ([calcOperator isEqualToString:@"/"])
+        result = [[_inputArray objectAtIndex:0] doubleValue] / [[_inputArray objectAtIndex:2] doubleValue];
+    else
+        NSLog(@"unsupported operator");
+
+    NSString *formatterResult = [doubleFormatter stringFromNumber:[NSNumber numberWithDouble:result]];
+    [self reset];
+    [_inputArray replaceObjectAtIndex:0 withObject:formatterResult];
+    _currIndex = [NSNumber numberWithInt: 0];
+}
+
+-(void)reset
+{
+    [_inputArray replaceObjectAtIndex:0 withObject:@"0"];
+    [_inputArray replaceObjectAtIndex:1 withObject:@""];
+    [_inputArray replaceObjectAtIndex:2 withObject:@""];
+    _currIndex = [NSNumber numberWithInt: -1];
+}
+
+-(void)reverseSignAtIndex:(NSInteger)index
 {
     
 }
-
-
-
 
 @end
