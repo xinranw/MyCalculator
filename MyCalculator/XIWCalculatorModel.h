@@ -27,4 +27,5 @@
 -(void)evaluate;
 -(void)reset;
 -(void)reverseSignAtIndex:(NSInteger) index;
+-(void)percentAtIndex:(NSInteger) index;
 @end

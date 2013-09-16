@@ -100,7 +100,21 @@
 
 -(void)reverseSignAtIndex:(NSInteger)index
 {
+    NSString *temp = [_inputArray objectAtIndex:index];
+    if ([temp rangeOfString:@"-"].location == NSNotFound )
+        [_inputArray replaceObjectAtIndex:index withObject:[@"-" stringByAppendingString:temp]];
+    else
+        [_inputArray replaceObjectAtIndex:index withObject:[temp substringFromIndex:1]];
+}
+
+-(void)percentAtIndex:(NSInteger) index;
+{
+    NSNumberFormatter *doubleFormatter = [[NSNumberFormatter alloc] init];
+    [doubleFormatter setUsesSignificantDigits:TRUE];
     
+    
+    NSString *result = [doubleFormatter stringFromNumber:[NSNumber numberWithDouble:[[_inputArray objectAtIndex:0] doubleValue] / 100]];
+    [_inputArray replaceObjectAtIndex:index withObject:result];
 }
 
 @end
