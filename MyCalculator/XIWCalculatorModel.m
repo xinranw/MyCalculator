@@ -12,6 +12,7 @@
 //declare any private properties
 @property (nonatomic, strong) NSString *lastButtonPress;
 @property (nonatomic, assign) NSNumber *currIndex;
+@property (nonatomic, assign) BOOL error;
 
 //declare any private methods
 
@@ -24,6 +25,8 @@
     _inputArray = [[NSMutableArray alloc] initWithObjects:@"0", @"", @"", nil];
     
     _currIndex = [NSNumber numberWithInt:(-1)];
+    
+    _error = NO;
     
     return self;
 }
@@ -79,14 +82,25 @@
         result = [[_inputArray objectAtIndex:0] doubleValue] - [[_inputArray objectAtIndex:2] doubleValue];
     else if ([calcOperator isEqualToString:@"X"])
         result = [[_inputArray objectAtIndex:0] doubleValue] * [[_inputArray objectAtIndex:2] doubleValue];
-    else if ([calcOperator isEqualToString:@"/"])
-        result = [[_inputArray objectAtIndex:0] doubleValue] / [[_inputArray objectAtIndex:2] doubleValue];
-    else
+    else if ([calcOperator isEqualToString:@"/"]){
+        if ([[_inputArray objectAtIndex:2] isEqualToString:@"0"])
+            _error = TRUE;
+        else
+            result = [[_inputArray objectAtIndex:0] doubleValue] / [[_inputArray objectAtIndex:2] doubleValue];
+    } else
         NSLog(@"unsupported operator");
-
-    NSString *formatterResult = [doubleFormatter stringFromNumber:[NSNumber numberWithDouble:result]];
+    
+    NSLog(@"%d", _error);
+    NSLog(@"Is error true? %d", _error == 1);
     [self reset];
-    [_inputArray replaceObjectAtIndex:0 withObject:formatterResult];
+    if (_error == 1){
+        _error = NO;
+        [_inputArray replaceObjectAtIndex:0 withObject:@"Err: DIV 0"];
+    } else {
+        NSString *formatterResult = [doubleFormatter stringFromNumber:[NSNumber numberWithDouble:result]];
+        [_inputArray replaceObjectAtIndex:0 withObject:formatterResult];
+        
+    }
     _currIndex = [NSNumber numberWithInt: 0];
 }
 

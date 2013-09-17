@@ -122,7 +122,9 @@
     
     if (currIndex == 2)
         [_calculatorModel evaluate];
-    if ([lastButtonPress isEqualToString:@"="]){
+    if ([lastButtonPress isEqualToString:@"="] && ![buttonPressed isEqualToString:@"="]){
+        [_calculatorModel replaceIntoArray:buttonPressed atIndex:1];
+        [_calculatorModel setCurrIndex: 1];
     } else if ([_operators containsObject:lastButtonPress]){
         // If last button pressed is an operator
         [_calculatorModel replaceIntoArray:buttonPressed atIndex:1];
