@@ -76,36 +76,25 @@
     }
 }
 
-
-//    NSNumberFormatter *f = [[NSNumberFormatter alloc] init];
-//    NSNumber *myNumber = [f numberFromString:[[sender titleLabel] text]];
-
-
-//NSString *string = @"hello bla bla";
-//if ([string rangeOfString:@"bla"].location == NSNotFound) {
-//    NSLog(@"string does not contain bla");
-//} else {
-//    NSLog(@"string contains bla!");
-//}
-
 // Handle the case when a number or a decimal is pressed
 - (IBAction)numberPressed:(id)sender
 {
     NSString *buttonPressed = [[sender titleLabel] text];   // Store current button press
     NSInteger currIndex = [_calculatorModel getIndex];      // Store current inputArray index
     
-    if ([_numbers containsObject:[_calculatorModel getLastButtonPress]]){
-        // If last button press was a number
+    if ([_numbers containsObject:[_calculatorModel getLastButtonPress]]){   // If last button press was a number
         if ([buttonPressed isEqual:@"."] && ([[[_calculatorModel inputArray] objectAtIndex:currIndex] rangeOfString:buttonPressed].location == NSNotFound)){
             // If decimal has not been pressed yet
             [_calculatorModel appendIntoArray:buttonPressed atIndex:currIndex];
         } else if (![buttonPressed isEqual:@"."]){
             [_calculatorModel appendIntoArray:buttonPressed atIndex:currIndex];
+        } else {
+            NSLog(@"Error with numberPressed function");
         }
-    } else {
-        // If last button press was not a number
-        if ([[_calculatorModel getLastButtonPress] isEqualToString:@"="])
+    } else {                                                // If last button press was not a number
+        if ([[_calculatorModel getLastButtonPress] isEqualToString:@"="]){
             [_calculatorModel reset];
+        }
         [_calculatorModel insertIntoArray:buttonPressed atIndex:([_calculatorModel getIndex] + 1)];
         [_calculatorModel setCurrIndex:([_calculatorModel getIndex] + 1)];
     }
@@ -113,53 +102,62 @@
     [self updateOutputDisplay];
 }
 
+//handle the case when /, X, -, +, = is pressed
 - (IBAction)operationPressed:(id)sender
 {
-    //handle the case when /, X, -, +, = is pressed
     NSString *buttonPressed = [[sender titleLabel] text];   // Store current button press
-    NSInteger currIndex = [_calculatorModel getIndex];      // Store current inputArray index
     NSString *lastButtonPress = [_calculatorModel getLastButtonPress];
     
-    if (currIndex == 2)
+    // If inputArray is full, evaluate the currently stored expression
+    if ([_calculatorModel getIndex] == 2){
         [_calculatorModel evaluate];
+    }
+    
     if ([lastButtonPress isEqualToString:@"="] && ![buttonPressed isEqualToString:@"="]){
+        // If expression has just been evaluated and a new non-equals operator has been pressed
         [_calculatorModel replaceIntoArray:buttonPressed atIndex:1];
         [_calculatorModel setCurrIndex: 1];
     } else if ([_operators containsObject:lastButtonPress]){
-        // If last button pressed is an operator
+        // If last button pressed is a non-equals operator, replace it with the new operator
         [_calculatorModel replaceIntoArray:buttonPressed atIndex:1];
         [_calculatorModel setCurrIndex: 1];
     } else if (![buttonPressed isEqualToString:@"="]){
+        // If a new operator is being inserted
         [_calculatorModel insertIntoArray:buttonPressed atIndex:1];
         [_calculatorModel setCurrIndex:1];
+    }   else {
+        NSLog(@"Error with operationPressed function");
     }
     [_calculatorModel setLastButtonPress:buttonPressed];
     [self updateOutputDisplay];
     
 }
 
+//handle the case when C, +/-, % is pressed
 - (IBAction)otherPressed:(id)sender
 {
-    //handle the case when C, +/-, % is pressed
     NSString *buttonPressed = [[sender titleLabel] text];   // Store current button press
     NSInteger currIndex = [_calculatorModel getIndex];      // Store current inputArray index
     
-    if ([buttonPressed isEqualToString:@"C"])
+    if ([buttonPressed isEqualToString:@"C"]){
         [_calculatorModel reset];
-    else if ([buttonPressed isEqualToString:@"+/-"]){
-        if (currIndex == 2)
+    } else if ([buttonPressed isEqualToString:@"+/-"]){
+        if (currIndex == 2){
             [_calculatorModel reverseSignAtIndex:currIndex];
-        else
+        } else {
             [_calculatorModel reverseSignAtIndex:0];
+        }
     } else if ([buttonPressed isEqualToString:@"%"]){
-        if (currIndex == 2)
+        if (currIndex == 2){
             [_calculatorModel percentAtIndex:currIndex];
-        else
+        } else {
             [_calculatorModel percentAtIndex:0];
+        }
+    } else if ([buttonPressed isEqualToString:@"%"]){
+        [_calculatorModel setLastButtonPress:buttonPressed];
+    } else {
+        NSLog(@"Error with otherPressed function");
     }
-        
-    else if ([buttonPressed isEqualToString:@"%"])
-    [_calculatorModel setLastButtonPress:buttonPressed];
     [self updateOutputDisplay];
 }
 

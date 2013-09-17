@@ -90,8 +90,6 @@
     } else
         NSLog(@"unsupported operator");
     
-    NSLog(@"%d", _error);
-    NSLog(@"Is error true? %d", _error == 1);
     [self reset];
     if (_error == 1){
         _error = NO;
