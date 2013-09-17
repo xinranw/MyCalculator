@@ -1,0 +1,20 @@
+XIWViewController
+The viewcontroller handles all logic for how the calculator operates. 
+The interface file (.h) declares IBOutlets for each button as well as an IBOutlet for the display label. It also declares the three functions for button handling.
+The implementation file declares a private model for the calculator, three private properties that are sets for numbers, operators, and others, and the private method setButtonBorders. On view load, the private properties are allocated and initiated, and the button borders are set. The three methods numberPressed, operationPressed, and otherPressed contain all logic for handling various button press situations. They react by checking on properties in the calculator model and making appropriate function calls in the calculator model to change the stored values. Lastly, the updateOutputDisplay function is responsible for updating the display
+
+XIWCalculatorModel
+The NSMutableArray inputArray is a length 3 array that holds all inputs:
+  - inputArray[0] stores the first number (or error message)
+  - inputArray[1] stores the operation to be performed
+  - inputArray[0] stores the second number
+Each array element is a string. As numbers and operations are input, they are added into the array by either insertion into, append to, or replacement of an array element. 
+The calculator model has three following private properties:
+  - NSString lastButtonPress remembers the last button to be pressed
+  - NSNumber currIndex keeps track of which element is to be changed next
+  - BOOL error acts as a flag for mathematical errors (currently only implemented for division by 0)
+The following methods operate upon the expressions for evaluative purposes
+  - evaluate: evaluates the current expression then reset inputArray; checks inputArray[1] for the current operations to perform
+  - reverseSignAtIndex: reverse the sign of the number at the given index
+  - percentAtIndex: calculates the percent of the number at the given index
+  - reset: reset inputArray (this implements the clear functionality)

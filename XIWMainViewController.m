@@ -23,9 +23,6 @@
 @end
 
 @implementation XIWMainViewController
-// Initialization
-//XIWCalculatorModel *calculatorModel;
-
 
 - (void)viewDidLoad
 {
@@ -163,8 +160,8 @@
 
 - (void)updateOutputDisplay
 {
-    NSString *displayString = [[[_calculatorModel inputArray] valueForKey:@"description"] componentsJoinedByString:@""];
-    outputDisplay.text = displayString; 
+    outputDisplay.text = [[[_calculatorModel inputArray] valueForKey:@"description"] componentsJoinedByString:@""];
+ 
 }
 
 
